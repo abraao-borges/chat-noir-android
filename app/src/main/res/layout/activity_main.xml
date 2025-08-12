@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="8dp">
+
+    <!-- Texto de status -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prenda o gato!"
+        android:textSize="20sp"
+        android:layout_marginBottom="12dp"
+        android:textStyle="bold" />
+
+    <!-- Tabuleiro -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:alignmentMode="alignMargins"
+        android:columnCount="11"
+        android:rowCount="11"
+        android:useDefaultMargins="true" />
+
+</LinearLayout>

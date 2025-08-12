@@ -1,47 +1,61 @@
 package com.ifpb.chatnoir
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.ifpb.chatnoir.ui.theme.ChatNoirTheme
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.gridlayout.widget.GridLayout
+import com.ifpb.chatnoir.Logic.CatAI
+import com.ifpb.chatnoir.Logic.GameLogic
+import com.ifpb.chatnoir.Model.CellType
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private val game = GameLogic()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ChatNoirTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        setContentView(R.layout.activity_main)
+
+        val grid = findViewById<GridLayout>(R.id.gridLayout)
+        val status = findViewById<TextView>(R.id.statusText)
+
+        grid.rowCount = game.board.size
+        grid.columnCount = game.board.size
+
+        renderBoard(grid, status)
+    }
+
+    private fun renderBoard(grid: GridLayout, status: TextView) {
+        grid.removeAllViews()
+        for (r in 0 until game.board.size) {
+            for (c in 0 until game.board.size) {
+                val btn = ImageButton(this)
+                btn.layoutParams = GridLayout.LayoutParams().apply {
+                    width = 90
+                    height = 90
                 }
+
+                when (game.board.cells[r][c]) {
+                    CellType.EMPTY -> btn.setImageResource(R.drawable.cell_empty)
+                    CellType.FENCE -> btn.setImageResource(R.drawable.cell_fence)
+                    CellType.CAT -> btn.setImageResource(R.drawable.cell_cat)
+                }
+
+                btn.setOnClickListener {
+                    if (!game.gameOver && game.placeFence(r, c)) {
+                        if (game.checkVictory() == null) {
+                            CatAI.moveCat(game.board)
+                        }
+                        val result = game.checkVictory()
+                        if (result != null) {
+                            status.text = result
+                        }
+                        renderBoard(grid, status)
+                    }
+                }
+
+                grid.addView(btn)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ChatNoirTheme {
-        Greeting("Android")
     }
 }

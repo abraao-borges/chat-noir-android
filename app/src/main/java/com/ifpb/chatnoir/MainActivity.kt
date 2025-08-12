@@ -1,7 +1,9 @@
 package com.ifpb.chatnoir
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
@@ -25,14 +27,32 @@ class MainActivity : AppCompatActivity() {
         renderBoard(grid, status)
     }
 
+    private fun dpToPx(dp: Float): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            resources.displayMetrics
+        ).toInt()
+    }
+
     private fun renderBoard(grid: GridLayout, status: TextView) {
         grid.removeAllViews()
+
+        val cellSizeDp = 35f
+        val cellSizePx = dpToPx(cellSizeDp)
+        val marginPx = dpToPx(0f)
+
         for (r in 0 until game.board.size) {
             for (c in 0 until game.board.size) {
-                val btn = ImageButton(this)
-                btn.layoutParams = GridLayout.LayoutParams().apply {
-                    width = 90
-                    height = 90
+                val btn = ImageButton(this).apply {
+                    layoutParams = GridLayout.LayoutParams().apply {
+                        width = cellSizePx
+                        height = cellSizePx
+                        // setMargins(marginPx, marginPx, marginPx, marginPx)
+                    }
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                    background = null
+                    adjustViewBounds = true
                 }
 
                 when (game.board.cells[r][c]) {

@@ -25,6 +25,6 @@
         app:alignmentMode="alignMargins"
         android:columnCount="11"
         android:rowCount="11"
-        android:useDefaultMargins="true" />
+        android:useDefaultMargins="false" />
 
 </LinearLayout>

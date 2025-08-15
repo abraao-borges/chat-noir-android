@@ -1,8 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.ChatNoir" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base theme -->
+    <style name="Theme.ChatNoir" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimaryContainer">@color/purple_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryContainer">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Surface colors -->
+        <item name="colorSurface">@color/gray_100</item>
+        <item name="colorSurfaceVariant">@color/gray_200</item>
+        <item name="colorOnSurface">@color/gray_900</item>
+
+        <!-- Error color -->
+        <item name="colorError">@color/red_400</item>
+        <item name="colorErrorContainer">@color/red_100</item>
+
+        <!-- Typography -->
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.ChatNoir.Headline.Small</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.ChatNoir.Title.Medium</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.ChatNoir.Body.Medium</item>
+
+        <!-- Component shapes -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.ChatNoir.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.ChatNoir.Medium</item>
+
+        <!-- Button style -->
+        <item name="materialButtonStyle">@style/Widget.ChatNoir.Button</item>
+
+        <!-- Card style -->
+        <item name="materialCardViewStyle">@style/Widget.ChatNoir.Card</item>
+    </style>
+
+    <!-- Text appearances -->
+    <style name="TextAppearance.ChatNoir.Headline.Small" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ChatNoir.Title.Medium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.ChatNoir.Body.Medium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.ChatNoir.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Shape appearances -->
+    <style name="ShapeAppearance.ChatNoir.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.ChatNoir.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <!-- Component styles -->
+    <style name="Widget.ChatNoir.Button" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/TextAppearance.ChatNoir.LabelLarge</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="Widget.ChatNoir.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeColor">@color/gray_300</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardForegroundColor">?attr/colorSurface</item>
     </style>
 </resources>

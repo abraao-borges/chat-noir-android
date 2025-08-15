@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ChatNoir</string>
+    <string name="game_title">Prenda o Gato!</string>
+    <string name="player_score">Jogador: 0</string>
+    <string name="cat_score">Gato: 0</string>
+    <string name="restart_game">Reiniciar</string>
+
 </resources>

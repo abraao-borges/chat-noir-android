@@ -5,19 +5,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="#FFFFFF">
 
-    <!-- Texto de status -->
     <TextView
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prenda o gato!"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_marginBottom="12dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#333333" />
 
-    <!-- Tabuleiro -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+        <TextView
+            android:id="@+id/playerScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jogador: 0"
+            android:textSize="18sp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:id="@+id/cpuScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gato: 0"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
@@ -25,6 +45,35 @@
         app:alignmentMode="alignMargins"
         android:columnCount="11"
         android:rowCount="11"
-        android:useDefaultMargins="false" />
+        android:useDefaultMargins="false"
+        android:background="#FFFFFF"
+        android:padding="2dp"/>
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar Jogo"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:backgroundTint="#FF5722"
+        android:textColor="@android:color/white"
+        android:layout_marginHorizontal="16dp"/>
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continuar Jogando"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"/>
 
 </LinearLayout>

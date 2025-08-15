@@ -14,6 +14,12 @@ class GameLogic {
         board.placeRandomFences()
     }
 
+    // Novo método para reiniciar o tabuleiro
+    fun restartBoard() {
+        board.reset() // Chama um novo método na classe Board
+        gameOver = false
+    }
+
     fun placeFence(row: Int, col: Int): Boolean {
         if (!board.canMoveTo(Position(row, col))) return false
         board.cells[row][col] = CellType.FENCE
@@ -22,17 +28,23 @@ class GameLogic {
 
     fun checkVictory(): String? {
         if (board.isEdge(board.catPosition)) {
-            cpuScore++
-            gameOver = true
+            if (!gameOver) {
+                cpuScore++
+                gameOver = true
+            }
             return "Gato venceu!"
         }
 
         if (CatAI.getNeighbors(board.catPosition, board.size).none { board.canMoveTo(it) }) {
-            playerScore++
-            gameOver = true
+            if (!gameOver) {
+                playerScore++
+                gameOver = true
+            }
             return "Você venceu!"
         }
 
         return null
     }
 }
+
+

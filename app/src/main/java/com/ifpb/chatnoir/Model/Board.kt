@@ -8,6 +8,19 @@ class Board(val size: Int = 11) {
         cells[catPosition.row][catPosition.col] = CellType.CAT
     }
 
+    // Novo método para resetar o tabuleiro
+    fun reset() {
+        // Limpar todas as células e colocar o gato no centro
+        for (r in 0 until size) {
+            for (c in 0 until size) {
+                cells[r][c] = CellType.EMPTY
+            }
+        }
+        catPosition = Position(size / 2, size / 2)
+        cells[catPosition.row][catPosition.col] = CellType.CAT
+        placeRandomFences() // Coloca novas cercas aleatórias
+    }
+
     fun placeRandomFences(min: Int = 9, max: Int = 15) {
         val count = (min..max).random()
         var placed = 0
@@ -29,3 +42,4 @@ class Board(val size: Int = 11) {
         return pos.row in 0 until size && pos.col in 0 until size && cells[pos.row][pos.col] == CellType.EMPTY
     }
 }
+
